@@ -1,0 +1,5 @@
+accounts_user:
+  email: [icontains]
+  first_name: [icontains]
+  last_name: [icontains]
+  username: [icontains]
