@@ -80,11 +80,11 @@ sitepackages.clean:
 
 PHONY: sitepackages.install
 sitepackages.install:
-	pip install -r requirements.txt
+	pipenv install
 
-PHONY: sitepackages.checkpoint
-sitepackages.checkpoint:
-	pip freeze > requirements.checkpoint.txt
+PHONY: sitepackages.sync
+sitepackages.sync:
+	pipenv update && pipenv clean
 
 
 #

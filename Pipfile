@@ -1,0 +1,44 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+#
+# packages for production
+#
+
+[packages]
+
+# primary packages
+Django = "~=1.11.0"
+
+# pre-release pinned versions
+djangae = "==0.9.10"
+
+# app engine sandbox pinned versions
+pytz = "==2016.4"
+
+# app engine helpers
+GoogleAppEngineCloudStorageClient = "*"
+
+# other dependencies
+django-session-csrf = "*"
+gae-app-settings = "*"
+
+
+#
+# packages for local testing
+#
+
+[dev-packages]
+"flake8" = "*"
+mock = "*"
+
+
+#
+# other requirements
+#
+
+[requires]
+python_version = "2.7"
