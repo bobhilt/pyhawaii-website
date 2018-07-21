@@ -5,6 +5,11 @@ import os
 import sys
 
 import djangae.environment
+import gae_app_settings
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 #
 # settings that are defined differently between dev and production
@@ -12,19 +17,17 @@ import djangae.environment
 
 if djangae.environment.is_production_environment():
 
+    _env = gae_app_settings.AppSetting
+
     DEBUG = False
 
-    import app_engine_only as overrides
-    SECRET_KEY = overrides.SECRET_KEY
-
-    TIME_ZONE = 'UTC'
+    SECRET_KEY = _env.get('SECRET_KEY')
+    TIME_ZONE = _env.get('TIME_ZONE')
+    SITE_ID = _env.get('DEFAULT_SITE_ID')
+    ALLOWED_HOSTS = ()
 
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-
-    ALLOWED_HOSTS = ()
-
-    _extra_cors_origins = ()
 
     logging.disable(logging.DEBUG)
 
@@ -32,35 +35,22 @@ if djangae.environment.is_production_environment():
 
 else:
 
-    DEBUG = True
-
-    SECRET_KEY = 'abcdefghijklmnopqrstuvwxyz'
-
-    TIME_ZONE = 'UTC'
-
-    DJANGAE_ADDITIONAL_MODULES = []
-
-    _local_ports = [8000 + i for i in range(len(DJANGAE_ADDITIONAL_MODULES) + 1)] + [9000]
-    _extra_cors_origins = [
-        '{domain}:{port}'.format(domain=domain, port=port)
-        for domain in ['localhost', 'localhost.com', '127.0.0.1']
-        for port in _local_ports
-    ]
+    DEBUG = bool(os.environ.get('DEBUG', True))
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'abcdefghijklmnopqrstuvwxyz')
+    TIME_ZONE = os.environ.get('TIME_ZONE', 'US/Hawaii')
+    SITE_ID = 1
 
     TESTING = sys.argv[1] == 'test'
     if TESTING:
         logging.disable(logging.CRITICAL)
 
-    FIXTURE_DIRS = ["fixtures"]
+    FIXTURE_DIRS = ('fixtures',)
     INSTALLING_FROM_FIXTURES = len(sys.argv) > 1 and sys.argv[1] == 'loaddata'
 
 
 #
 # ALL SETTINGS AFTER THIS POINT SHOULD BE DEFINED DIRECTLY
 #
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 #
 # core django
@@ -73,6 +63,8 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
+
+    # core apps
     'djangae',
 
     'django.contrib.admin',
@@ -88,7 +80,12 @@ INSTALLED_APPS = (
     'djangae.contrib.contenttypes',
     'djangae.contrib.security',
 
+    'django.contrib.sites',
+
+    # project apps
     'accounts',
+
+    # third party apps
 
     # this must be the very last app
     'config.apps.Config',
@@ -145,7 +142,6 @@ APPEND_SLASH = True
 #
 
 AUTH_USER_MODEL = 'accounts.User'
-
 DJANGAE_CREATE_UNKNOWN_USER = False
 
 
@@ -157,25 +153,6 @@ DEFAULT_FILE_STORAGE = 'djangae.storage.CloudStorage'
 CLOUD_STORAGE_BUCKET = None  # replace with name of bucket to use for files
 BUCKET_KEY = CLOUD_STORAGE_BUCKET
 BUCKET_ACL = 'project-private'
-
-
-#
-# django-cors-headers
-#
-
-CORS_ORIGIN_WHITELIST = [] + _extra_cors_origins
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_HEADERS = (
-    'x-requested-with',
-    'content-type',
-    'accept',
-    'origin',
-    'authorization',
-    'x-csrftoken',
-    'x-app-id',
-)
 
 
 #
