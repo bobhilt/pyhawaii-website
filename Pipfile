@@ -25,6 +25,7 @@ GoogleAppEngineCloudStorageClient = "*"
 # other dependencies
 django-session-csrf = "*"
 gae-app-settings = "*"
+social-auth-app-django = "*"
 
 
 #
