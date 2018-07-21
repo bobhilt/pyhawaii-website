@@ -1,5 +1,13 @@
 [
   {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+      "domain": "example.com",
+      "name": "Test Site"
+    }
+  },
+  {
     "model": "accounts.User",
     "pk": 1,
     "fields": {

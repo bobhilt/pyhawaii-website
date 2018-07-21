@@ -51,3 +51,9 @@ indexes:
   - name: user_id
   - name: action_time
     direction: desc
+
+- kind: django_site
+  properties:
+  - name: domain
+  - name: __key__
+    direction: desc
