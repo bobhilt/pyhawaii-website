@@ -6,7 +6,7 @@
 # project settings
 #
 
-GCP_PROJECT=<project name in GCP>
+GCP_PROJECT=py-hawaii
 
 
 #
@@ -45,17 +45,6 @@ shell:
 PHONY: test
 test:
 	cd site && $(VIRTUAL_ENV)/bin/python manage.py test $(TEST_ARGS)
-
-PHONY: test.coverage.exec
-test.coverage.exec:
-	cd site && $(VIRTUAL_ENV)/bin/coverage run --source='.' manage.py test --failfast .
-
-PHONY: test.coverage.report
-test.coverage.report:
-	cd site && $(VIRTUAL_ENV)/bin/coverage report
-
-PHONY: test.coverage
-test.coverage: test.coverage.exec test.coverage.report
 
 
 #
