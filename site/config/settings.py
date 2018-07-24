@@ -24,7 +24,7 @@ if djangae.environment.is_production_environment():
     SECRET_KEY = _env.get('SECRET_KEY')
     TIME_ZONE = _env.get('TIME_ZONE')
     SITE_ID = _env.get('DEFAULT_SITE_ID')
-    ALLOWED_HOSTS = ()
+    ALLOWED_HOSTS = ('.appspot.com',)
 
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
