@@ -5,6 +5,10 @@ threadsafe: true
 builtins:
 - remote_api: on
 
+libraries:
+- name: pytz
+  version: "2016.4"
+
 handlers:
 - url: /static
   static_dir: static
