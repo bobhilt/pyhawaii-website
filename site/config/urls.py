@@ -11,6 +11,7 @@ urlpatterns = (
     url(r'^_ah/', include('djangae.urls')),
 
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 
     # insert catch-all rule here
     # url(r'^', ...),
