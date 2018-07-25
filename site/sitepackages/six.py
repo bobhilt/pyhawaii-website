@@ -1,1 +1,1 @@
-../../env/lib/python2.7/site-packages/six.py/
+../../env/lib/python2.7/site-packages/six.py

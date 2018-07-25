@@ -57,3 +57,18 @@ indexes:
   - name: domain
   - name: __key__
     direction: desc
+
+- kind: social_auth_association
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: social_auth_nonce
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: social_auth_usersocialauth
+  properties:
+  - name: __key__
+    direction: desc

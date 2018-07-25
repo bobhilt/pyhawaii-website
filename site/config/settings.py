@@ -17,14 +17,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 if djangae.environment.is_production_environment():
 
-    _env = gae_app_settings.AppSetting
+    _env = gae_app_settings.AppSetting.get
 
     DEBUG = False
 
-    SECRET_KEY = _env.get('SECRET_KEY')
-    TIME_ZONE = _env.get('TIME_ZONE')
-    SITE_ID = _env.get('DEFAULT_SITE_ID')
-    ALLOWED_HOSTS = ()
+    SECRET_KEY = _env('SECRET_KEY')
+    TIME_ZONE = _env('TIME_ZONE')
+    SITE_ID = _env('DEFAULT_SITE_ID')
+    ALLOWED_HOSTS = ('.appspot.com',)
 
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'accounts',
 
     # third party apps
+    'social_django',
 
     # this must be the very last app
     'config.apps.Config',
@@ -114,6 +115,8 @@ TEMPLATES = (
         'OPTIONS': {
             'context_processors': (
                 'django.contrib.auth.context_processors.auth',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.request',
@@ -160,6 +163,19 @@ BUCKET_ACL = 'project-private'
 #
 
 ANON_ALWAYS = True
+
+
+#
+# using social auth django for user authentication
+#
+
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ('email', 'first_name', 'last_name')
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+) + AUTHENTICATION_BACKENDS
+
+if djangae.environment.is_production_environment():
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY, SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = _env('GOOGLE_OAUTH2_CREDS').split('|')
 
 
 #
