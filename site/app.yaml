@@ -7,7 +7,12 @@ builtins:
 
 libraries:
 - name: pytz
-  version: "2016.4"
+  version: 2016.4
+- name: ssl
+  version: 2.7.11
+
+env_variables:
+  GAE_USE_SOCKETS_HTTPLIB : true
 
 handlers:
 - url: /static
