@@ -22,7 +22,7 @@ handlers:
   static_files: static/img/favicon.ico
   upload: static/img/favicon.ico
 
-- url: /_ah/(mapreduce|queue|warmup).*
+- url: /_ah/.*
   script: wsgi.application
   secure: always
   login: admin
