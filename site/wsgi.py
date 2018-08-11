@@ -3,7 +3,7 @@ vendor.add('sitepackages')
 
 import os  # noqa
 from django.core.wsgi import get_wsgi_application  # noqa
-from djangae.wsgi import DjangaeApplication  # noqa
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-application = DjangaeApplication(get_wsgi_application())
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.app_engine')
+application = get_wsgi_application()
