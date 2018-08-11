@@ -12,9 +12,7 @@ name = "pypi"
 
 # primary packages
 Django = "~=1.11.0"
-
-# pre-release pinned versions
-djangae = "==0.9.10"
+psycopg2 = "*"
 
 # app engine sandbox pinned versions
 pytz = "==2016.4"
