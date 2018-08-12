@@ -22,7 +22,6 @@ pytz = "==2016.4"
 GoogleAppEngineCloudStorageClient = "*"
 
 # other dependencies
-django-session-csrf = "*"
 gae-app-settings = "*"
 social-auth-app-django = "*"
 

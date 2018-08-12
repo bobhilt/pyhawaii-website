@@ -50,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'session_csrf.CsrfMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -78,7 +78,6 @@ TEMPLATES = (
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'session_csrf.context_processor',
             ),
         },
     },
@@ -114,12 +113,6 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', 'English'),
 )
-
-#
-# django-session-csrf
-#
-
-ANON_ALWAYS = True
 
 
 #
