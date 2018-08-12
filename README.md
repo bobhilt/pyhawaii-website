@@ -7,7 +7,7 @@ The PyHawaii website/CMS project.
 
 ### Initialize everything prior to first run
 
-First you need a python 2.7 virtual environment in `./env`:
+First you need a python 3.7 virtual environment in `./env`:
 
 ```bash
 $ virtualenv -p $(which python2) env
@@ -23,12 +23,10 @@ $ mkvirtualenv --python=$(which python2) projectname
 (projectname) $
 ```
 
-**NOTE:** the name `env` is required for links elsewhere in the project to work correctly.
-
 Next, activate the virtualenv and install all requisite packages:
 
 ```bash
-(projectname) $ pip install -r requirements.txt
+(projectname) $ make sitepackages.install
 ```
 
 
@@ -58,7 +56,7 @@ To run all unit tests defined in the project:
 To return the database to a clean state using the bootstrap.json fixture file:
 
 ```bash
-(env) $ make resetdb
+(env) $ make db.reset
 ```
 
 **NOTE:** the default database contains three users:
@@ -70,7 +68,7 @@ To return the database to a clean state using the bootstrap.json fixture file:
 To re-create the `bootstrap.json` fixture file:
 
 ```bash
-(env) $ make dumpdb
+(env) $ make db.dump
 ```
 
 
@@ -94,9 +92,8 @@ To migrate the database to the latest migrations:
 Right now, this installs the following versions of requisite packages:
 
 * `Django`: 1.11 latest
-* `psycopg2`: latest
-* `django-session-csrf`: latest
-* `GoogleAppEngineCloudStorageClient`: latest
+* `django-cms`: latest
+* `social-auth-app-django`: latest
 
 
 ## Testing
@@ -109,6 +106,4 @@ This is set up to install the following packages for testing:
 
 ## Maintenance
 
-# switching between google sdk versions
-
-`gcloud components update --version 170.0.0`
+(need heroku docs)
