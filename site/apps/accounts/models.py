@@ -1,13 +1,13 @@
 import logging
 
-from djangae.contrib.gauth_datastore.models import GaeAbstractDatastoreUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 log = logging.getLogger(__name__)
 
 
-class User(GaeAbstractDatastoreUser):
+class User(AbstractUser):
 
     is_service = models.BooleanField(
         default=False,

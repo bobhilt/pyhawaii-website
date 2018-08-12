@@ -1,6 +1,6 @@
-# Cookie-cutter Django + Djangae Web App
+# PyHawaii Website/CMS
 
-Cookie-cutter to bootstrap a brand-new app using Django in the Google App Engine environment and with Google Cloud Datastore as the back-end. Note that this works with Python 2.7 and *not* with Python 3.x due to limitations of the Google App Engine sandbox.
+The PyHawaii website/CMS project.
 
 
 ## Commands
@@ -73,9 +73,8 @@ To re-create the `bootstrap.json` fixture file:
 (env) $ make dumpdb
 ```
 
-### Migrations
 
-*Note that migrations only have relevance if you are using a regular database instead of the datastore.*
+### Migrations
 
 To create migrations:
 
@@ -90,42 +89,12 @@ To migrate the database to the latest migrations:
 ```
 
 
-## Using a dabase instead of the datastore
-
-You can use a database backend instead of the datastore if your project requires this. While there are many changes you will need to make in how you create models (no `ListField`, for instance), the primary difference in using this cookie-cutter is that your settings need to reference the right backend.
-
-In `site/settings.py` change:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'djangae.db.backends.appengine',
-    }
-}
-```
-
-... to:
-
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '..', 'db_test.db'),
-    }
-}
-```
-
-You should be able to split your project between a database and the datastore using the documentation in [Multiple databases](https://docs.djangoproject.com/en/1.11/topics/db/multi-db/) but this has not been tried with this cookie-cutter yet.
-
-
 ## Versions
 
 Right now, this installs the following versions of requisite packages:
 
-* `Django`: 1.8 latest
-* `djangae`: latest
-* `django-filetransfers`: latest
+* `Django`: 1.11 latest
+* `psycopg2`: latest
 * `django-session-csrf`: latest
 * `GoogleAppEngineCloudStorageClient`: latest
 

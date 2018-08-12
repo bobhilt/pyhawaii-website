@@ -1,8 +1,5 @@
 from django.contrib import admin
 
-from djangae.contrib.gauth_datastore.models import Group as GaeGroup
-from django.contrib.auth.models import Group
-
 from . import models
 
 
@@ -37,7 +34,3 @@ class UserAdmin(admin.ModelAdmin):
             }
         ),
     )
-
-
-admin.site.unregister(Group)
-admin.site.unregister(GaeGroup)
