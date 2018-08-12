@@ -16,6 +16,9 @@ PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 INSTALLED_APPS = (
 
+    # before django.contrib.admin
+    'djangocms_admin_style',
+
     # core apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,11 +28,19 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # project apps
+    # before cms
     'apps.accounts',
+
+    # cms
+    'cms',
+    'menus',
+    'treebeard',
 
     # third party apps
     'social_django',
+
+    # project apps
+    # ...
 
     # this must be the very last app
     'config.apps.Config',
@@ -96,6 +107,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 #
+# django-cms
+#
+
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', 'English'),
+)
+
+#
 # django-session-csrf
 #
 
@@ -103,7 +123,7 @@ ANON_ALWAYS = True
 
 
 #
-# using social auth django for user authentication
+# social-auth-django
 #
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ('email', 'first_name', 'last_name')
