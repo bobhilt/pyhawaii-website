@@ -9,7 +9,7 @@ urlpatterns = (
 
     url(r'^_ah/queue/', include('tasks.urls', namespace='queue')),
 
-    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^accounts/', include('apps.accounts.urls', namespace='accounts')),
     url(r'^auth/', include('social_django.urls', namespace='social')),
 
     # insert catch-all rule here

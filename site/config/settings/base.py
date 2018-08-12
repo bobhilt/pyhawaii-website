@@ -6,6 +6,8 @@ import os
 #
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+APPS_DIR = os.path.join(BASE_DIR, 'apps')
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 
 #
@@ -24,7 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     # project apps
-    'accounts',
+    'apps.accounts',
 
     # third party apps
     'social_django',
