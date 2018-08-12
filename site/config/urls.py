@@ -13,5 +13,5 @@ urlpatterns = (
     url(r'^auth/', include('social_django.urls', namespace='social')),
 
     # insert catch-all rule here
-    # url(r'^', ...),
+    url(r'^', include('cms.urls')),
 )
