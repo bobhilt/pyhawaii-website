@@ -16,6 +16,9 @@ PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 INSTALLED_APPS = (
 
+    # before django.contrib.admin
+    'djangocms_admin_style',
+
     # core apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,11 +28,20 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # project apps
+    # before cms
     'apps.accounts',
+
+    # cms
+    'cms',
+    'menus',
+    'sekizai',
+    'treebeard',
 
     # third party apps
     'social_django',
+
+    # project apps
+    # ...
 
     # this must be the very last app
     'config.apps.Config',
@@ -39,9 +51,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'session_csrf.CsrfMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -67,7 +84,8 @@ TEMPLATES = (
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'session_csrf.context_processor',
+                'cms.context_processors.cms_settings',
+                'sekizai.context_processors.sekizai',
             ),
         },
     },
@@ -96,14 +114,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 #
-# django-session-csrf
+# django-cms
 #
 
-ANON_ALWAYS = True
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', 'English'),
+)
 
 
 #
-# using social auth django for user authentication
+# social-auth-django
 #
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ('email', 'first_name', 'last_name')

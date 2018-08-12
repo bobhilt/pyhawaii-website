@@ -61,7 +61,7 @@ db.reset: db.clean db.migrate
 
 PHONY: db.dump
 db.dump:
-	$(VIRTUAL_ENV)/bin/python site/manage.py dumpdata --indent 2 -e contenttypes -e sessions -e admin.logentry > fixtures/bootstrap.json
+	$(VIRTUAL_ENV)/bin/python site/manage.py dumpdata --indent 2 -e contenttypes -e auth.permission -e sessions -e admin.logentry > fixtures/bootstrap.json
 
 PHONY: db.makemigrations
 db.makemigrations:

@@ -13,6 +13,7 @@ name = "pypi"
 # primary packages
 Django = "~=1.11.0"
 psycopg2 = "*"
+django-cms = "~=3.4.0"
 
 # app engine sandbox pinned versions
 pytz = "==2016.4"
@@ -21,7 +22,6 @@ pytz = "==2016.4"
 GoogleAppEngineCloudStorageClient = "*"
 
 # other dependencies
-django-session-csrf = "*"
 gae-app-settings = "*"
 social-auth-app-django = "*"
 
