@@ -26,15 +26,14 @@ SESSION_COOKIE_SECURE = True
 SECRET_KEY = _env('SECRET_KEY')
 TIME_ZONE = _env('TIME_ZONE')
 
-_db_username, _db_password = _env('DATABASE_CREDS').split('|')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': '127.0.0.1',
+        'HOST': '/cloudsql/py-hawaii:us-west2:py-hawaii-db',
         'PORT': '5432',
         'NAME': 'djangodb',
-        'USER': _db_username,
-        'PASSWORD': _db_password,
+        'USER': 'django',
+        'PASSWORD': _env('DATABASE_PASSWORD'),
     }
 }
 
