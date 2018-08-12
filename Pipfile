@@ -11,20 +11,15 @@ name = "pypi"
 [packages]
 
 # primary packages
-Django = "~=1.11.0"
+Django = "~=1.11"
 psycopg2 = "*"
-django-cms = "~=3.4.0"
+django-cms = "*"
 
-# app engine sandbox pinned versions
-pytz = "==2016.4"
-
-# app engine helpers
-GoogleAppEngineCloudStorageClient = "*"
 
 # other dependencies
-gae-app-settings = "*"
+django-environ = "*"
+pytz = "*"
 social-auth-app-django = "*"
-
 
 #
 # packages for local testing
@@ -40,4 +35,4 @@ mock = "*"
 #
 
 [requires]
-python_version = "2.7"
+python_version = "3.7"
