@@ -12,7 +12,7 @@ TIME_ZONE = os.environ.get('TIME_ZONE', 'US/Hawaii')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sql'),  # noqa
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite'),  # noqa
     }
 }
 

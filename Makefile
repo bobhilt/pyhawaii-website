@@ -51,10 +51,12 @@ test:
 # commands for database maintenance
 #
 
+PHONY: db.clean
+db.clean:
+	rm -f db.sqlite
+
 PHONY: db.reset
-db.reset:
-	git co -- site/index.yaml
-	rm -rf site/.storage
+db.reset: db.clean db.migrate
 	$(VIRTUAL_ENV)/bin/python site/manage.py loaddata ../fixtures/bootstrap.json
 
 PHONY: db.dump
