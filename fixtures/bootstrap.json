@@ -1,59 +1,76 @@
 [
-  {
-    "model": "sites.site",
-    "pk": 1,
-    "fields": {
-      "domain": "example.com",
-      "name": "Test Site"
-    }
-  },
-  {
-    "model": "accounts.User",
-    "pk": 1,
-    "fields": {
-      "username": "admin",
-      "password": "pbkdf2_sha256$20000$Ah5OUlSdaJSN$C4W9SZeFtMzPJ6EoxbO17V8dqHTDRIDGBnbziYnaCv0=",
-      "email": "admin@example.com",
-      "is_superuser": true,
-      "is_staff": true
-    }
-  },
-  {
-    "model": "accounts.User",
-    "pk": 2,
-    "fields": {
-      "username": "bob",
-      "password": "pbkdf2_sha256$20000$jx6akVszAOjy$+J9D28TD9Xc+u3xI9+whoBNlS0Ki8FuxIn9lcBz9FaA=",
-      "email": "bob@example.com",
-      "is_staff": true
-    }
-  },
-  {
-    "model": "accounts.User",
-    "pk": 3,
-    "fields": {
-      "username": "carol",
-      "password": "pbkdf2_sha256$20000$kMHLCQQ5egsE$SW/yMnZ/BxEw4XL+/Ww+HuafCtWnXa6rI5HSKdh5to0=",
-      "email": "carol@example.com"
-    }
-  },
-  {
-    "model": "accounts.User",
-    "pk": 4,
-    "fields": {
-      "username": "dan",
-      "password": "pbkdf2_sha256$20000$kMHLCQQ5egsE$SW/yMnZ/BxEw4XL+/Ww+HuafCtWnXa6rI5HSKdh5to0=",
-      "email": "dan@example.com",
-      "is_active": false
-    }
-  },
-  {
-    "model": "accounts.User",
-    "pk": 5,
-    "fields": {
-      "username": "service",
-      "password": "$",
-      "is_service": true
-    }
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "example.com",
+    "name": "Test Site"
   }
+},
+{
+  "model": "accounts.User",
+  "pk": 1,
+  "fields": {
+    "username": "admin",
+    "password": "pbkdf2_sha256$20000$Ah5OUlSdaJSN$C4W9SZeFtMzPJ6EoxbO17V8dqHTDRIDGBnbziYnaCv0=",
+    "email": "admin@example.com",
+    "is_superuser": true,
+    "is_staff": true
+  }
+},
+{
+  "model": "accounts.User",
+  "pk": 2,
+  "fields": {
+    "username": "bob",
+    "password": "pbkdf2_sha256$20000$jx6akVszAOjy$+J9D28TD9Xc+u3xI9+whoBNlS0Ki8FuxIn9lcBz9FaA=",
+    "email": "bob@example.com",
+    "is_staff": true
+  }
+},
+{
+  "model": "accounts.User",
+  "pk": 3,
+  "fields": {
+    "username": "carol",
+    "password": "pbkdf2_sha256$20000$kMHLCQQ5egsE$SW/yMnZ/BxEw4XL+/Ww+HuafCtWnXa6rI5HSKdh5to0=",
+    "email": "carol@example.com"
+  }
+},
+{
+  "model": "accounts.User",
+  "pk": 4,
+  "fields": {
+    "username": "dan",
+    "password": "pbkdf2_sha256$20000$kMHLCQQ5egsE$SW/yMnZ/BxEw4XL+/Ww+HuafCtWnXa6rI5HSKdh5to0=",
+    "email": "dan@example.com",
+    "is_active": false
+  }
+},
+{
+  "model": "accounts.User",
+  "pk": 5,
+  "fields": {
+    "username": "service",
+    "password": "$",
+    "is_service": true
+  }
+},
+{
+  "model": "cms.usersettings",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "language": "en",
+    "clipboard": 1
+  }
+},
+{
+  "model": "cms.placeholder",
+  "pk": 1,
+  "fields": {
+    "slot": "clipboard",
+    "default_width": null
+  }
+}
 ]
