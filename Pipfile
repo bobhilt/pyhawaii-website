@@ -12,7 +12,6 @@ name = "pypi"
 
 # primary packages
 Django = "~=1.11"
-psycopg2 = "*"
 django-cms = "*"
 
 
