@@ -11,7 +11,7 @@ import environ
 SETTINGS_PATH = environ.Path(__file__) - 1
 BASE_PATH = SETTINGS_PATH - 2
 PROJECT_ROOT = BASE_PATH - 1
-APPS_PATH = BASE_PATH + 'apps'
+APPS_PATH = BASE_PATH('apps')
 
 
 #
@@ -31,7 +31,7 @@ _env = environ.Env()
 try:
     DATABASES = {'default': _env.db('DATABASE_URL')}
 except ImproperlyConfigured:
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': PROJECT_ROOT + 'db.sqlite'}}  # noqa
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': PROJECT_ROOT('db.sqlite')}}  # noqa
 
 
 #
@@ -95,7 +95,7 @@ TEMPLATES = (
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': (
-            os.path.join(BASE_PATH, 'templates'),
+            BASE_PATH.path('templates'),
         ),
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,12 +126,11 @@ LOGIN_REDIRECT_URL = '/'
 APPEND_SLASH = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_PATH + 'static'
+STATIC_ROOT = BASE_PATH('static')
 
 TIME_ZONE = _env('TIME_ZONE', default='US/Hawaii')
 
-_additional_hosts = _env('ADDITIONAL_ALLOWED_HOSTS', default='')
-ALLOWED_HOSTS = _additional_hosts.split(',') if _additional_hosts else ()
+ALLOWED_HOSTS = ('*',)
 
 
 #
