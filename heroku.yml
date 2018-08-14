@@ -5,7 +5,7 @@ setup:
 build:
   docker:
     web: Dockerfile
-release:
-  command:
-    - ./util/predeployment.sh
-  image: web
+# release:
+#   command:
+#     - ./util/predeployment.sh
+#   image: web
