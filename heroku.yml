@@ -1,0 +1,11 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: ./util/containerize/Dockerfile
+release:
+  command:
+    - ./util/predeployment.sh
+  image: web
