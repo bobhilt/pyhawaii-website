@@ -15,7 +15,7 @@ WORKDIR /usr/site
 
 # python requirements
 
-COPY ./scripts/containerize/requirements.txt ./
+COPY ./util/containerize/requirements.txt ./
 RUN pip install -r requirements.txt
 
 
@@ -26,7 +26,7 @@ COPY ./site/ ./
 
 # collect static files into single directory
 
-COPY ./scripts/containerize/env.collectstatic ./env.collectstatic
+COPY ./util/containerize/env.collectstatic ./env.collectstatic
 RUN DJANGO_ENVFILE_PATH=/usr/site/env.collectstatic \
     python manage.py collectstatic -v 0 --no-input && rm /usr/site/env.collectstatic
 
