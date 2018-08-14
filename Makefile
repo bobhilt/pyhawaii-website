@@ -82,7 +82,7 @@ sitepackages.clean:
 
 PHONY: sitepackages.sync
 sitepackages.sync:
-	pipenv update && pipenv clean && pipenv lock --requirements > scripts/containerize/requirements.txt
+	pipenv update && pipenv clean && pipenv lock --requirements > util/containerize/requirements.txt
 
 
 #

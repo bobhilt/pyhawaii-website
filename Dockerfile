@@ -6,6 +6,8 @@ RUN apk update \
   && pip install psycopg2-binary==2.7.5 \
   && apk del build-deps gcc python3-dev musl-dev
 
+RUN pip install gunicorn
+
 
 # environment
 
