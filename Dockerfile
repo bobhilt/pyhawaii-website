@@ -45,4 +45,4 @@ ENV CONTAINER_TAG=$TAG
 
 # execute app context
 
-CMD gunicorn config.wsgi --bind 0.0.0.0:8000 -w 2 -k gevent
+CMD gunicorn config.wsgi --bind 0.0.0.0:$PORT -w 2 -k gevent
