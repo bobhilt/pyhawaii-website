@@ -3,10 +3,8 @@ FROM python:2.7.15-alpine3.8
 RUN apk update \
   && apk add --virtual build-deps gcc python3-dev musl-dev \
   && apk add postgresql-dev \
-  && pip install psycopg2-binary==2.7.5 \
+  && pip install gunicorn gevent psycopg2-binary==2.7.5 \
   && apk del build-deps gcc python3-dev musl-dev
-
-RUN pip install gunicorn gevent
 
 
 # environment
