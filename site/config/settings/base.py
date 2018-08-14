@@ -126,7 +126,7 @@ LOGIN_REDIRECT_URL = '/'
 APPEND_SLASH = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_PATH('static')
+STATIC_ROOT = BASE_PATH('collected-static')
 
 TIME_ZONE = _env('TIME_ZONE', default='US/Hawaii')
 
