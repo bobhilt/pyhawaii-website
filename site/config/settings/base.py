@@ -1,21 +1,47 @@
 import os
 
+from django.core.exceptions import ImproperlyConfigured
+import environ
+
 
 #
 # ALL SETTINGS IN THIS FILE SHOULD BE DEFINED DIRECTLY
 #
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-APPS_DIR = os.path.join(BASE_DIR, 'apps')
-PROJECT_ROOT = os.path.dirname(BASE_DIR)
+SETTINGS_PATH = environ.Path(__file__) - 1
+BASE_PATH = SETTINGS_PATH - 2
+PROJECT_ROOT = BASE_PATH - 1
+APPS_PATH = BASE_PATH('apps')
+
+
+#
+# environment variables and overrides
+#
+
+_envfile_path = os.environ.get('DJANGO_ENVFILE_PATH', BASE_PATH('.env'))
+if os.path.isfile(_envfile_path):
+    environ.Env.read_env(_envfile_path)
+
+_env = environ.Env()
+
+#
+# database
+#
+
+try:
+    DATABASES = {'default': _env.db('DATABASE_URL')}
+except ImproperlyConfigured:
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': PROJECT_ROOT('db.sqlite')}}  # noqa
 
 
 #
 # core django
 #
 
-INSTALLED_APPS = (
+DEBUG = _env.bool('DEBUG', default=True)
+SECRET_KEY = _env('SECRET_KEY', default='abcdefghijklmnopqrstuvwxyz')
 
+INSTALLED_APPS = (
     # before django.contrib.admin
     'djangocms_admin_style',
 
@@ -69,7 +95,7 @@ TEMPLATES = (
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': (
-            os.path.join(BASE_DIR, 'templates'),
+            BASE_PATH.path('templates'),
         ),
         'APP_DIRS': True,
         'OPTIONS': {
@@ -100,7 +126,11 @@ LOGIN_REDIRECT_URL = '/'
 APPEND_SLASH = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_PATH('collected-static')
+
+TIME_ZONE = _env('TIME_ZONE', default='US/Hawaii')
+
+ALLOWED_HOSTS = ('*',)
 
 
 #
@@ -131,6 +161,10 @@ SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ('email', 'first_name', 'last_name')
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
 ) + AUTHENTICATION_BACKENDS
+try:
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY, SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = _env('GOOGLE_OAUTH2_CREDS').split('|')
+except ImproperlyConfigured:
+    pass
 
 
 #

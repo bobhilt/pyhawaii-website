@@ -1,0 +1,22 @@
+-i https://pypi.org/simple
+certifi==2018.8.13
+chardet==3.0.4
+django-classy-tags==0.8.0
+django-cms==3.5.2
+django-environ==0.4.5
+django-formtools==2.1
+django-sekizai==0.10.0
+django-treebeard==4.3
+django==1.11.15
+djangocms-admin-style==1.2.8
+idna==2.7
+oauthlib==2.1.0
+pyjwt==1.6.4
+python-openid==2.2.5; python_version < '3.0'
+pytz==2018.5
+requests-oauthlib==1.0.0
+requests==2.19.1
+six==1.11.0
+social-auth-app-django==2.1.0
+social-auth-core==1.7.0
+urllib3==1.23

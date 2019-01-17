@@ -6,7 +6,7 @@
 # project settings
 #
 
-GCP_PROJECT=py-hawaii
+HEROKU_PROJECT=pyhawaii
 
 
 #
@@ -80,43 +80,14 @@ PHONY: sitepackages.clean
 sitepackages.clean:
 	pip freeze | xargs pip uninstall -y
 
-PHONY: sitepackages.install
-sitepackages.install:
-	pipenv install
-
 PHONY: sitepackages.sync
 sitepackages.sync:
-	pipenv update && pipenv clean
+	pipenv update && pipenv clean && pipenv lock --requirements > util/containerize/requirements.txt
 
 
 #
 # commands for deployment and production adjustments
 #
 
-PHONY: deploy.app
-deploy.app:
-	gcloud app deploy --project $(GCP_PROJECT) --no-promote --version $(shell git describe --tags --dirty | sed 's/\./-/') site/app.yaml
-
-PHONY: deploy.dispatch
-deploy.dispatch:
-	gcloud app deploy --project $(GCP_PROJECT) site/dispatch.yaml
-
-PHONY: deploy.indexes
-deploy.indexes:
-	gcloud datastore --project $(GCP_PROJECT) create-indexes site/index.yaml
-
-PHONY: deploy.queue
-deploy.queue:
-	gcloud app deploy --project $(GCP_PROJECT) site/queue.yaml
-
 PHONY: deploy
 deploy: deploy.indexes deploy.queue deploy.app deploy.dispatch
-
-
-#
-# IN PROGRESS
-#
-
-PHONY: shell.remote
-shell.remote:
-	$(VIRTUAL_ENV)/bin/python site/manage.py --sandbox=remote shell
