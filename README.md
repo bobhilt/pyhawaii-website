@@ -7,7 +7,8 @@ The PyHawaii website/CMS project.
 
 ### Initialize everything prior to first run
 
-First you need a python 3.7 virtual environment in `./env`:
+First you need a python 2.7 virtual environment in `./env`:
+[Note: 'env' is literal in this case, as 'env' expected in the script.]
 
 ```bash
 $ virtualenv -p $(which python2) env
@@ -23,15 +24,30 @@ $ mkvirtualenv --python=$(which python2) projectname
 (projectname) $
 ```
 
-Next, activate the virtualenv and install all requisite packages:
+### Next, activate the virtualenv and install all requisite packages: ###
 
 ```bash
-(projectname) $ make sitepackages.install
+(projectname) $ make sitepackages.sync
 ```
 
+### Ensure pipenv is installed ###
+
+```bash
+$ pipenv --version
+```
+
+To install pipvenv:
+
+```bash
+$ pip install pipenv
+```
+
+### Run migrations to set up database: ###
+```bash
+(env) $ make db.reset
+```
 
 ### Running locally
-
 To enter a shell:
 
 ```bash
@@ -49,7 +65,6 @@ To run all unit tests defined in the project:
 ```bash
 (env) $ make test
 ```
-
 
 ## Database operations
 

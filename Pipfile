@@ -28,6 +28,7 @@ social-auth-app-django = "*"
 [dev-packages]
 "flake8" = "*"
 mock = "*"
+pipenv = "*"
 
 
 #
