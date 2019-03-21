@@ -11,7 +11,7 @@ name = "pypi"
 [packages]
 
 # primary packages
-Django = ">=1.11,<1.11.99"
+django = "*"
 
 
 # other dependencies
@@ -35,4 +35,4 @@ pipenv = "*"
 #
 
 [requires]
-python_version = "2.7"
+python_version = "3.7"
